@@ -1,0 +1,25 @@
+## the cpu to build for
+export CPU = stm32f1
+STM32F103C8_FLASH_HACK ?= 0
+ifneq ($(STM32F103C8_FLASH_HACK),0)
+  export CPU_MODEL = stm32f103cb
+else
+  export CPU_MODEL = stm32f103c8
+endif
+
+# define the default port depending on the host OS
+PORT_LINUX ?= /dev/ttyUSB0
+PORT_DARWIN ?= $(firstword $(sort $(wildcard /dev/tty.SLAB_USBtoUART*)))
+
+# setup serial terminal
+include $(RIOTMAKE)/tools/serial.inc.mk
+
+# this board uses openocd by default
+DEBUG_ADAPTER ?= stlink
+STLINK_VERSION ?= 2
+
+# call a 'reset halt' command before starting the debugger
+# it is required as `connect_assert_srst` is set
+export OPENOCD_DBG_START_CMD = -c 'reset halt'
+
+include $(RIOTMAKE)/tools/openocd.inc.mk
