@@ -58,6 +58,9 @@ int bmi160_init(bmi160_t *dev, const bmi160_params_t* params)
     i2c_write_reg(BMI160_BUS, BMI160_ADDR, BMI160_REG_ACC_CONF, 0x2c, 0); // ORD: 1600Hz
     i2c_write_reg(BMI160_BUS, BMI160_ADDR, BMI160_REG_GYR_CONF, 0x2c, 0); // ORD: 1600Hz
 
+    /* Set Range */
+    i2c_write_reg(BMI160_BUS, BMI160_ADDR, BMI160_REG_ACC_RANGE, 0x08, 0); // Range: +-8g
+
     /* Enable accelerometer and gyroscope */
     i2c_write_reg(BMI160_BUS, BMI160_ADDR, BMI160_REG_CMD, BMI160_CMD_ACC_PM_NORMAL, 0);
     xtimer_usleep(BMI160_ACC_PMU_USLEEP);
