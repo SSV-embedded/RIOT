@@ -18,6 +18,10 @@
  * @{
  */
 #define BMI160_REG_CHIP_ID          (0x00) /**< Device ID */
+#define BMI160_REG_ACC_CONF         (0x40)
+#define BMI160_REG_ACC_RANGE        (0x41)
+#define BMI160_REG_GYR_CONF         (0x42)
+#define BMI160_REG_GYR_RANGE        (0x43)
 #define BMI160_REG_CMD              (0x7E) /**< Command register **/
 #define BMI160_REG_DATA_GYR_X       (0x0C) /**< X-axis gyroscope **/
 #define BMI160_REG_DATA_GYR_Y       (0x0E) /**< Y-axis gyroscope **/
